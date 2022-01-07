@@ -50,17 +50,19 @@
             this.scary_video.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scary_video.Enabled = true;
             this.scary_video.Location = new System.Drawing.Point(0, 0);
+            this.scary_video.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scary_video.Name = "scary_video";
             this.scary_video.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("scary_video.OcxState")));
-            this.scary_video.Size = new System.Drawing.Size(547, 330);
+            this.scary_video.Size = new System.Drawing.Size(724, 401);
             this.scary_video.TabIndex = 0;
             this.scary_video.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 276);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 340);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(547, 54);
+            this.pictureBox1.Size = new System.Drawing.Size(729, 66);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -70,9 +72,10 @@
             this.rules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.rules.Font = new System.Drawing.Font("Arial Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.rules.ForeColor = System.Drawing.Color.DarkRed;
-            this.rules.Location = new System.Drawing.Point(12, 280);
+            this.rules.Location = new System.Drawing.Point(16, 345);
+            this.rules.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.rules.Name = "rules";
-            this.rules.Size = new System.Drawing.Size(128, 43);
+            this.rules.Size = new System.Drawing.Size(162, 54);
             this.rules.TabIndex = 2;
             this.rules.Text = "RULES";
             this.rules.Click += new System.EventHandler(this.rules_Click);
@@ -83,9 +86,10 @@
             this.timer_to_dead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.timer_to_dead.Font = new System.Drawing.Font("Arial Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.timer_to_dead.ForeColor = System.Drawing.Color.DarkRed;
-            this.timer_to_dead.Location = new System.Drawing.Point(429, 280);
+            this.timer_to_dead.Location = new System.Drawing.Point(572, 345);
+            this.timer_to_dead.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.timer_to_dead.Name = "timer_to_dead";
-            this.timer_to_dead.Size = new System.Drawing.Size(106, 43);
+            this.timer_to_dead.Size = new System.Drawing.Size(136, 54);
             this.timer_to_dead.TabIndex = 3;
             this.timer_to_dead.Text = "00:00";
             // 
@@ -107,9 +111,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(221, 258);
+            this.pictureBox2.Size = new System.Drawing.Size(295, 318);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
@@ -127,10 +132,10 @@
             // 
             // NoSleep_windows
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(547, 330);
+            this.ClientSize = new System.Drawing.Size(724, 401);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.timer_to_dead);
@@ -139,13 +144,14 @@
             this.Controls.Add(this.scary_video);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NoSleep_windows";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NoSleep.exe";
+            this.Text = "NoSleep";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoSleep_windows_FormClosing);
             this.Load += new System.EventHandler(this.NoSleep_windows_Load);

