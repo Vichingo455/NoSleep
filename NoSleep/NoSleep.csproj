@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\NoSleep.exe" />
+    <EmbeddedResource Include="Resources\svchost.exe" />
     <Content Include="skull_real_ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
