@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -10,8 +11,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("666")]
 [assembly: AssemblyProduct("NoSleep")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©️ 666")]
+[assembly: AssemblyTrademark("666")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -32,5 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("6.6.6.6")]
+[assembly: AssemblyFileVersion("6.6.6.6")]
+[assembly: NeutralResourcesLanguage("en")]
